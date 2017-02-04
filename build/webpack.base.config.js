@@ -8,6 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     entry: {
         jczq: path.join(__dirname, '../src/jczq/main.js'),
+        jclq: path.join(__dirname, '../src/jclq/main.js'),
         vendor: ['vue', 'vue-router', 'vuex','v-tap','vuex-router-sync']
     },
     output: {
@@ -29,7 +30,7 @@ module.exports = {
                         // other preprocessors should work out of the box, no loader config like this nessessary.
                         // 'scss': 'vue-style-loader!css-loader!sass-loader',
                         // 'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-                        css: ExtractTextPlugin.extract({loader:'css-loader',options:{sourceMap:true}}),
+                        css: ExtractTextPlugin.extract({loader:'css-loader',options:{sourceMap:false}}),
                     }
                     // other vue-loader options go here
                 }
@@ -48,7 +49,7 @@ module.exports = {
             }, {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                use: ExtractTextPlugin.extract({loader:'css-loader',options:{sourceMap:true}}),
+                use: ExtractTextPlugin.extract({loader:'css-loader',options:{sourceMap:false}}),
 
             }
         ]
@@ -58,6 +59,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'jczq/index.html',
             template: path.join(__dirname, '../src/jczq/index.ejs')
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'jclq/index.html',
+            template: path.join(__dirname, '../src/jclq/index.ejs')
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest']
