@@ -15,6 +15,7 @@ const app = new Vue(Object.assign({
     store,
 }, App));
 
-app.$mount('#app')
+app.$mount('#app');
+
 
 export { app, router, store }

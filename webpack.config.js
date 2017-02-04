@@ -3,10 +3,14 @@
  */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 module.exports = {
-    entry: './src/main',
+    entry: {
+        main: './src/main.js',
+        vendor: ['vue', 'vue-router', 'vuex','v-tap','vuex-router-sync']
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[chunkhash:8].[name].js',
         path: path.resolve(__dirname, 'dist'),
     },
     module: {
@@ -17,6 +21,7 @@ module.exports = {
                 loader: 'vue-loader',
                 options: {
                     loaders: {
+                        // 'js': 'babel-loader'
                         // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
                         // the "scss" and "sass" values for the lang attribute to the right configs here.
                         // other preprocessors should work out of the box, no loader config like this nessessary.
@@ -25,6 +30,11 @@ module.exports = {
                     }
                     // other vue-loader options go here
                 }
+            },
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
@@ -36,10 +46,21 @@ module.exports = {
         ]
     },
     plugins: [
+
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.resolve('./src/index.ejs')
-        })
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['vendor', 'manifest']
+
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
+
 
     ]
-}
+};
