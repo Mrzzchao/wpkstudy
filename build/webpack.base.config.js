@@ -4,7 +4,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     entry: {
         jczq: [path.join(__dirname, '../src/jczq/main.js')],
@@ -36,11 +35,13 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: 'jczq/index.html',
+            title: '竞彩足球',
             template: path.join(__dirname, '../src/jczq/index.ejs'),
             chunks: ['manifest','vendor', 'jczq']
         }),
         new HtmlWebpackPlugin({
             filename: 'jclq/index.html',
+            title: '竞彩篮球',
             template: path.join(__dirname, '../src/jclq/index.ejs'),
             chunks: ['manifest','vendor', 'jclq']
         }),
