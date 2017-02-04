@@ -14,6 +14,7 @@ const app = express();
 
 const compiler = webpack(webpackConfig);
 app.use(webpackDevMiddleware(compiler, {
+    hot: true,
     publicPath: webpackConfig.output.publicPath
 }));
 
