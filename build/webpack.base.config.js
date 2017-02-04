@@ -6,12 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 module.exports = {
     entry: {
-        main: './src/main.js',
+        main: path.join(__dirname, '../src/main.js'),
         vendor: ['vue', 'vue-router', 'vuex','v-tap','vuex-router-sync']
     },
     output: {
         filename: '[chunkhash:8].[name].js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../dist'),
     },
     module: {
         rules: [
@@ -49,17 +49,16 @@ module.exports = {
 
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: path.resolve('./src/index.ejs')
+            template: path.join(__dirname, '../src/index.ejs')
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest']
 
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
         }),
+
 
 
     ]
