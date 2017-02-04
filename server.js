@@ -14,7 +14,7 @@ const app = express();
 
 const compiler = webpack(webpackConfig);
 app.use(webpackDevMiddleware(compiler, {
-    publicPath: "/" // Same as `output.publicPath` in most cases.
+    publicPath: webpackConfig.output.publicPath
 }));
 
 

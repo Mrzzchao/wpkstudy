@@ -4,14 +4,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     entry: {
-        main: path.join(__dirname, '../src/main.js'),
+        jczq: path.join(__dirname, '../src/jczq/main.js'),
         vendor: ['vue', 'vue-router', 'vuex','v-tap','vuex-router-sync']
     },
     output: {
-        filename: '[chunkhash:8].[name].js',
+        filename: '[name]/[name].[chunkhash:8].js',
         path: path.resolve(__dirname, '../dist'),
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -27,6 +29,7 @@ module.exports = {
                         // other preprocessors should work out of the box, no loader config like this nessessary.
                         // 'scss': 'vue-style-loader!css-loader!sass-loader',
                         // 'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+                        css: ExtractTextPlugin.extract({loader:'css-loader',options:{sourceMap:true}}),
                     }
                     // other vue-loader options go here
                 }
@@ -42,14 +45,19 @@ module.exports = {
                 options: {
                     name: '[name].[ext]?[hash]'
                 }
+            }, {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: ExtractTextPlugin.extract({loader:'css-loader',options:{sourceMap:true}}),
+
             }
         ]
     },
     plugins: [
 
         new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: path.join(__dirname, '../src/index.ejs')
+            filename: 'jczq/index.html',
+            template: path.join(__dirname, '../src/jczq/index.ejs')
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest']
@@ -58,6 +66,7 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
         }),
+        new ExtractTextPlugin({ filename: '[name]/style.[chunkhash:8].css', disable: false, allChunks: true })
 
 
 
