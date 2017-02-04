@@ -1,33 +1,47 @@
 <template>
-    <div class="l-full l-flex-column syxw">
+    <div class="l-full l-flex-column">
+        <div class="header"></div>
         <!--彩种导航 end-->
         <div class="l-flex-1 l-relative">
             <div class="l-full container">
                 <div class="content">
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
+                    <div class="item l-box-center">hello1</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+                    <div class="item l-box-center">hello</div>
+
                 </div>
 
             </div>
@@ -35,9 +49,30 @@
 
 
         </div>
+        <div class="footer"></div>
 
     </div>
 </template>
+
+<style>
+
+    .header{
+        height: 3rem;
+        background: red;
+    }
+    .footer{
+        height: 5rem;
+        background: darkcyan;
+    }
+    .item:nth-child(2n+1){
+        height: 3rem;
+        background: darkorange;
+    }
+    .item:nth-child(2n){
+        height: 3rem;
+        background: deeppink;
+    }
+</style>
 
 <script>
     import  {Scroller} from 'scroller'
