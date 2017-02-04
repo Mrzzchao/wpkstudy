@@ -7,8 +7,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     entry: {
-        jczq: path.join(__dirname, '../src/jczq/main.js'),
-        jclq: path.join(__dirname, '../src/jclq/main.js'),
+        jczq: [path.join(__dirname, '../src/jczq/main.js')],
+        jclq: [path.join(__dirname, '../src/jclq/main.js')],
         vendor: ['vue', 'vue-router', 'vuex','v-tap','vuex-router-sync']
     },
 

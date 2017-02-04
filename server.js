@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 
 const webpackDevMiddleware = require("webpack-dev-middleware");
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpack = require("webpack");
 const webpackConfig = require("./build/webpack.dev.config");
 
@@ -17,6 +18,10 @@ app.use(webpackDevMiddleware(compiler, {
     hot: true,
     publicPath: webpackConfig.output.publicPath
 }));
+app.use(webpackHotMiddleware(compiler, {
+    log: ()=>{}
+}));
+
 
 
 app.listen(8080, function () {

@@ -2,12 +2,11 @@
  * Created by lichun on 2017/1/18.
  */
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const base = require('./webpack.base.config');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = Object.assign({}, base, {
-    devtool: 'inline-source-map',
+    devtool: '#cheap-source-map',
     plugins: base.plugins.concat([
         new webpack.optimize.UglifyJsPlugin({
             compress: {
