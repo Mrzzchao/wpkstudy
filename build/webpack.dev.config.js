@@ -15,7 +15,8 @@ module.exports = Object.assign({}, base, {
     output: {
         filename: '[name]/main.js',
         path: path.resolve(__dirname, '../dist'),
-        publicPath: '/'
+        publicPath: '/',
+        chunkFilename: '[name].chunk.js'
     },
     plugins: base.plugins.concat([
         new webpack.HotModuleReplacementPlugin(),

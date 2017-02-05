@@ -7,9 +7,11 @@ const base = require('./webpack.base.config');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 module.exports = Object.assign({}, base, {
-    devtool: '#cheap-source-map',
+    // devtool: '#cheap-source-map',
+    devtool: '#hidden-source-map',
     plugins: base.plugins.concat([
         new webpack.optimize.UglifyJsPlugin({
+            sourceMap:true,
             compress: {
                 warnings: false
             }
@@ -27,32 +29,31 @@ module.exports = Object.assign({}, base, {
     output: {
         filename: '[name]/main.[chunkhash:8].js',
         path: path.resolve(__dirname, '../dist'),
-        publicPath: '/'
+        publicPath: '/',
+        chunkFilename: '[name].[chunkhash:8].chunk.js'
     },
     module: {
         rules: [
             ...base.module.rules,
             {
                 test: /\.vue$/,
-                // exclude: /node_modules/,
                 loader: 'vue-loader',
                 options: {
                     loaders: {
-                        // 'js': 'babel-loader'
-                        // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-                        // the "scss" and "sass" values for the lang attribute to the right configs here.
-                        // other preprocessors should work out of the box, no loader config like this nessessary.
-                        // 'scss': 'vue-style-loader!css-loader!sass-loader',
-                        // 'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-                        css: ExtractTextPlugin.extract({loader:'css-loader',options:{sourceMap:false}}),
+                        css: ExtractTextPlugin.extract({
+                            fallback: "style-loader",
+                            use: "css-loader"
+                        }),
                     }
-                    // other vue-loader options go here
                 }
             },
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                use: ExtractTextPlugin.extract({loader:'css-loader',options:{sourceMap:false}}),
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                }),
 
             }
         ]
