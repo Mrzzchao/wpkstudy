@@ -5,6 +5,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 module.exports = {
+    context: path.resolve(__dirname, "../src"),
     entry: {
         jczq: [path.join(__dirname, '../src/jczq/main.js')],
         jclq: [path.join(__dirname, '../src/jclq/main.js')],
@@ -20,7 +21,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
-                use: "file-loader?name=assets/[name].[hash:8].[ext]"
+                use: "file-loader?name=[path]/[name].[hash:8].[ext]"
 
 
             }
@@ -28,6 +29,7 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js','.jsx', '.vue'],
+        modules: [path.resolve(__dirname, "../src"), "node_modules"]
     },
     plugins: [
         new webpack.DefinePlugin({
