@@ -45,6 +45,7 @@
                     <div class="item l-box-center cell">hello</div>
 
 
+
                 </scroller>
 
             </div>
@@ -69,11 +70,14 @@
     }
     .item:nth-child(2n+1){
         height: 3rem;
-        background: darkorange;
+        background-color: darkorange;
     }
     .item:nth-child(2n){
         height: 3rem;
-        background: deeppink;
+        background-color: deeppink;
+    }
+    .item{
+        background-image: url(../assets/logo_top.png);
     }
 </style>
 

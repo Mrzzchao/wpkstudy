@@ -20,7 +20,8 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
-                use: 'file-loader',
+                use: "file-loader?name=assets/[name].[hash:8].[ext]"
+
 
             }
         ]

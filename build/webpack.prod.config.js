@@ -5,6 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const base = require('./webpack.base.config');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 module.exports = Object.assign({}, base, {
     devtool: '#cheap-source-map',
     plugins: base.plugins.concat([
@@ -19,6 +20,7 @@ module.exports = Object.assign({}, base, {
             filename: '[name]/[name].[chunkhash:8].js'
 
         }),
+        new WebpackAssetsManifest({})
 
 
     ]),
