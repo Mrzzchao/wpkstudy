@@ -32,11 +32,6 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor', 'manifest'],
-            // filename: '[name]/[name].[chunkhash:8].js'
-
-        }),
         new HtmlWebpackPlugin({
             filename: 'jczq/index.html',
             title: '竞彩足球',

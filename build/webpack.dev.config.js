@@ -19,6 +19,11 @@ module.exports = Object.assign({}, base, {
     },
     plugins: base.plugins.concat([
         new webpack.HotModuleReplacementPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['vendor', 'manifest'],
+            filename: '[name]/[name].js'
+
+        }),
 
     ]),
     module: {

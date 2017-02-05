@@ -13,8 +13,12 @@ module.exports = Object.assign({}, base, {
                 warnings: false
             }
         }),
-        new ExtractTextPlugin({ filename: '[name]/style.[chunkhash:8].css', disable: false, allChunks: true })
+        new ExtractTextPlugin({ filename: '[name]/style.[chunkhash:8].css', disable: false, allChunks: true }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['vendor', 'manifest'],
+            filename: '[name]/[name].[chunkhash:8].js'
 
+        }),
 
 
     ]),
