@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js --progress --hide-modules",
-    "server": "cross-env NODE_ENV=production node server.js",
+    "prod": "cross-env NODE_ENV=production node server.js",
+    "dev": "node server.js",
     "clean": "rimraf dist/*"
   },
   "author": "sampsonli",

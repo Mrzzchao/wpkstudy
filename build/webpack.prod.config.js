@@ -19,7 +19,7 @@ module.exports = Object.assign({}, base, {
 
     ]),
     output: {
-        filename: '[name]/[name].[chunkhash:8].js',
+        filename: '[name]/main.[chunkhash:8].js',
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/'
     },
@@ -28,7 +28,7 @@ module.exports = Object.assign({}, base, {
             ...base.module.rules,
             {
                 test: /\.vue$/,
-                exclude: /node_modules/,
+                // exclude: /node_modules/,
                 loader: 'vue-loader',
                 options: {
                     loaders: {

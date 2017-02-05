@@ -11,18 +11,20 @@ const webpackConfig = require("./build/webpack.dev.config");
 
 
 const app = express();
-// app.use(express.static(path.join(__dirname, 'dist')));
-
-const compiler = webpack(webpackConfig);
-app.use(webpackDevMiddleware(compiler, {
-    hot: true,
-    publicPath: webpackConfig.output.publicPath
-}));
-app.use(webpackHotMiddleware(compiler, {
-    log: ()=>{}
-}));
-
-
+if(process.env.NODE_ENV==='production'){
+    app.use(express.static(path.join(__dirname, 'dist'), {
+        maxAge: '1d'
+    }));
+}else {
+    const compiler = webpack(webpackConfig);
+    app.use(webpackDevMiddleware(compiler, {
+        hot: true,
+        publicPath: webpackConfig.output.publicPath
+    }));
+    app.use(webpackHotMiddleware(compiler, {
+        log: ()=>{}
+    }));
+}
 
 app.listen(8080, function () {
     console.log("Listening on port 8080!");

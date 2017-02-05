@@ -25,12 +25,16 @@ module.exports = {
             }
         ]
     },
+    resolve: {
+        extensions: ['.js','.jsx', '.vue'],
+    },
     plugins: [
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['vendor', 'manifest']
+            name: ['vendor', 'manifest'],
+            // filename: '[name]/[name].[chunkhash:8].js'
 
         }),
         new HtmlWebpackPlugin({

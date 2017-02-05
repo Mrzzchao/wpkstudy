@@ -13,7 +13,7 @@ module.exports = Object.assign({}, base, {
     devtool: '#cheap-module-eval-source-map',
     entry,
     output: {
-        filename: '[name]/[name].js',
+        filename: '[name]/main.js',
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/'
     },
@@ -26,7 +26,7 @@ module.exports = Object.assign({}, base, {
             ...base.module.rules,
             {
                 test: /\.vue$/,
-                exclude: /node_modules/,
+                // exclude: /node_modules/,
                 use: 'vue-loader',
             },
             {
@@ -39,6 +39,7 @@ module.exports = Object.assign({}, base, {
 
             }
         ]
-    }
+    },
+
 
 })
