@@ -21,19 +21,24 @@
     export default {
         props: {
             scrollX: Boolean,
-            scrollY: Boolean
+            scrollY: Boolean,
+            bouncing: Boolean,
         },
         mounted(){
+            let transform = 'transform';
+            if(typeof document.body.style.transform==='undefined'){
+                transform = 'webkitTransform'
+            }
             let container = this.$el;
             let content = this.$el.querySelector('.scroll-content');
             let scrollerObj = new Scroller(function(left, top, zoom) {
-                content.style.transform ='translate3d(' + (-left) + 'px,' + (-top) + 'px,0) scale(' + zoom + ')';
+                content.style[transform]='translate3d(' + (-left) + 'px,' + (-top) + 'px,0) scale(' + zoom + ')';
             }, {
                 scrollingX: this.scrollX,
-                scrollingY: this.scrollY
+                scrollingY: this.scrollY,
+                bouncing: this.bouncing
             });
             scrollerObj.setDimensions(container.offsetWidth, container.offsetHeight, content.offsetWidth, content.offsetHeight);
-
 
             container.addEventListener("touchstart", function(e) {
                 // Don't react if initial down happens on a form element
