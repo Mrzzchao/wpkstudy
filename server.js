@@ -12,6 +12,8 @@ const webpackConfig = require("./build/webpack.dev.config");
 
 const app = express();
 if(process.env.NODE_ENV==='production'){
+    const compression = require('compression');
+    app.use(compression());
     app.use(express.static(path.join(__dirname, 'dist'), {
         maxAge: '1d'
     }));

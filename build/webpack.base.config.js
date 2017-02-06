@@ -19,12 +19,7 @@ module.exports = {
                 exclude: /node_modules/,
                 use: 'babel-loader',
             },
-            {
-                test: /\.(png|jpg|gif|svg)$/,
-                use: "file-loader?name=[path]/[name].[hash:8].[ext]"
 
-
-            }
         ]
     },
     resolve: {

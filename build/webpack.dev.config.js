@@ -43,6 +43,15 @@ module.exports = Object.assign({}, base, {
                     'style-loader'
                 ]
 
+            },
+            {
+                test: /\.(png|jpg|gif|svg)$/,
+                loader: "file-loader",
+                query: {
+                    name: '[path]/[name].[ext]?[hash:8]',
+                }
+
+
             }
         ]
     },
