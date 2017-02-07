@@ -4,6 +4,7 @@
         <div class="l-flex-1 l-relative">
             <div class="l-full container">
                 <div class="content">
+                    <img src="../assets/logo.png"/>
                     <h1>hello world</h1>
                     <h1>hello world</h1>
                     <h1>hello world</h1>

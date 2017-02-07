@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <title>邀您体验超刺激竞猜游戏</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script src="js/flexible.js"></script>
+</head>
+<body>
+<div class="share-wrap">
+    <div class="share-cont">
+        <div class="user-speak">
+            <div class="user-icon"><img style="display:none"
+
+                     alt="用户头像" id="invitorPoto">
+
+            </div>
+            <div class="user-words">
+                <p class="words-from-who"><i class="first-yin"></i>您的好友<span id="invitor"></span>喊你一起来猜球，</p>
+                <p class="words-award">送你双重壕礼 ！<i class="last-yin"></i></p>
+            </div>“
+
+        </div>
+        <div class="gift-cont">
+            <div class="had-gift" style="display: none">
+                <!--<span class="had-gift"  style="display: none"></span>-->
+            </div>
+            <div class="had-gift had-gift-right" style="display: none">
+                <!--<span class="had-gift" style="display: none"></span>-->
+            </div>
+
+            <!--按钮，如果没有领取用button-lq，领取后用button-download-->
+            <div class="button-cont ">
+                <div class="button-lq "></div>
+                <div class="button-open " style="display: none" onclick="location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.crazy500.cbet&ckey=CK1352222687752'"></div>
+
+                <div class="button-download hide" onclick="location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.crazy500.cbet&ckey=CK1352222687752'"></div>
+            </div>
+        </div>
+
+        <div class="notice-login" style="display:none">下载后请使用微信登录</div>
+    </div>
+</div>
+<!--toast 领取成功-->
+<div class="toast lq-suc " style="display: none">领取成功</div>
+<div class="toast old-user " style="display: none">您已经是老用户了</br>
+    快登陆app邀请好友，每人可得1000猜球币哦~
+</div>
+
+<script>
+    (function ($) {
+        var wxlogin = {
+            config: {
+//                domain: 'http://192.168.41.76:8899'
+                domain: 'https://crazybet.choopaoo.com:47899'
+            },
+            util:{
+              ajax: function (url, method, data, cb,errcb) {
+                  if(typeof data === "function"){
+                      if(typeof data === "function"){
+                          errcb = cb;
+                      }
+                      cb = data;
+                      data = {};
+                  }
+                  var xhr = new XMLHttpRequest();
+
+                  var qs = '';
+                  Object.keys(data).forEach(function (key) {
+                      qs+=(key+'='+data[key]+'&')
+                  });
+
+                  qs = qs.substr(0, qs.length-1);
+                  if(method==="GET"){
+                      if(~url.indexOf('?')){
+                          throw new Error('url 错误')
+                      }
+                      url = url + '?'+ qs
+                  }
+                  xhr.open(method, url, true);
+                  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//                xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+                  xhr.onreadystatechange = function () {
+                      if (xhr.readyState == '4' && xhr.status == '200') {
+                          cb&&cb(JSON.parse(xhr.responseText))
+
+                      }
+                  };
+                  xhr.onerror = function () {
+                      errcb&&errcb(xhr.statusText)
+                  };
+
+                  xhr.send(qs)
+
+              }
+            },
+            getCode: function () {
+                location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx86d590e6cf755764&redirect_uri=" + encodeURIComponent(location.href) + "&response_type=code&scope=snsapi_userinfo&state=STATE&connect_redirect=1#wechat_redirect";
+            },
+            getInviteInfo:function (invite) {
+
+                this.util.ajax(this.config.domain+'/invite/info', 'GET', {inviter: invite}, function (result) {
+                    if(result.status==='100'){
+                        $('#invitor').innerHTML = ' '+result.data.username+(result.data.username?'，':'');
+                        $('#invitorPoto').setAttribute('src', result.data.photo||'images/user-icon.png');
+                        $('#invitorPoto').style.display = 'block'
+                    }
+                }, function () {
+                    $('#invitorPoto').setAttribute('src', 'images/user-icon.png');
+                    $('#invitorPoto').style.display = 'block'
+                })
+
+            },
+            login: function (code, inviter) {
+                var me = this;
+                var data = {ck: '',cptype: 'wechat', src: 'h5',  registration_id: '', code: code, inviter:inviter};
+                this.util.ajax(this.config.domain+'/login/cpuser', 'POST', data, function (result) {
+                    if(result.status==='100'){
+                        localStorage.setItem('had_lingqu', true)
+                        me.triggerToast(true)//领取成功
+                        me.processNewUser();
+
+                    }else if(result.status==='149'){
+                        localStorage.setItem('had_lingqu', true)
+                        me.triggerToast(false)//老用户
+                       me.processOldUser()
+                    }else {
+//                        alert(result.message)
+                        alert("哎呀，程序开小差了，请退出重新进入试试吧。")
+                    }
+                }, function (errortext) {
+//                    alert(errortext)
+                    alert("网络异常，请稍后再试")
+                });
+            },
+
+            processOldUser:function () {
+                $('.notice-login').style.display = "block";
+                $('.had-gift').style.display = 'none';
+                $('.had-gift-right').style.display = 'none';
+                $('.button-open').style.display = "block";
+                $('.button-lq').style.display = "none";
+                $('.button-download').style.display = "none";
+            },
+            processNewUser: function () {
+                $('.notice-login').style.display = "block";
+                $('.had-gift').style.display = 'block';
+                $('.had-gift-right').style.display = 'block';
+                $('.button-open').style.display = "none";
+                $('.button-lq').style.display = "none";
+                $('.button-download').style.display = "block";
+            },
+
+
+            triggerToast: function (isSucc) {
+                if (isSucc) {
+                    $('.lq-suc').style.display = "block";
+                    $('.old-user').style.display = "none";
+                    setTimeout(function () {
+                        $('.lq-suc').style.display = "none";
+                        $('.old-user').style.display = "none";
+                    }, 5000)
+                } else {
+                    $('.lq-suc').style.display = "none";
+                    $('.old-user').style.display = "block";
+                }
+
+            },
+
+            bind: function () {
+                var me = this;
+
+                $('.button-lq').addEventListener('click', function () {
+                    if (~location.search.indexOf('inviter')) {
+                        me.getCode();
+                    }
+                })
+            },
+            initStatus: function () {
+                var inviter = undefined;
+                if (~location.search.indexOf('inviter')) {
+                    location.search.split('?')[1].split('&').some(function (piece) {
+                        if (piece.indexOf('inviter') === 0) {
+                            inviter = piece.split('=')[1];
+                            return true;
+                        }
+                    });
+                    if(inviter){
+                        this.getInviteInfo(inviter)
+                    }
+
+                }
+
+                $('.had-gift').style.display = 'none';
+                $('.had-gift-right').style.display = 'none';
+
+                if(localStorage.getItem('had_lingqu')){//领取过了
+                    $('.old-user').style.display = "block";
+                    $('.button-download').style.display = "none";
+                    $('.button-open').style.display = "block";
+                    $('.button-lq').style.display = "none";
+                    $('.notice-login').style.display = "block";
+                }else {//微信授权进来
+                    if (~location.search.indexOf('code')) {
+                        $('.button-open').style.display = "none";
+                        $('.button-download').style.display = "block";
+                        $('.button-lq').style.display = "none";
+                        var code = undefined;
+                        location.search.split('?')[1].split('&').forEach(function (piece) {
+                            if(piece.indexOf('code')===0){
+                                code = piece.split('=')[1]
+                            }
+                        });
+                        inviter&&this.login(code,inviter)
+                    } else {//第一次进来
+                        $('.button-open').style.display = "none";
+                        $('.button-download').style.display = "none";
+                        $('.button-lq').style.display = "block";
+                    }
+                }
+            },
+            init: function () {
+                this.initStatus();
+                this.bind();
+            }
+        };
+        Object.keys(wxlogin).forEach(function (key) {
+            if (typeof wxlogin[key] === 'function') {
+                wxlogin[key] = wxlogin[key].bind(wxlogin)
+            }
+        });
+        wxlogin.init();
+    })(function (qs) {
+        return document.querySelector(qs)
+    })
+
+
+</script>
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?246b1c759e9a6088fe7c2d91d2d200ee";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body>
+</html>
