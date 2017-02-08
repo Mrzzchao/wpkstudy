@@ -4,7 +4,7 @@
         <!--彩种导航 end-->
         <div class="l-flex-1 l-relative">
             <div class="l-full ">
-                <scroller scroll-y>
+                <scroller scroll-y bouncing>
                     <div class="item l-box-center cell">hello</div>
                     <div class="item l-box-center cell">hello</div>
                    <div class="item l-box-center cell">hello</div>
@@ -53,7 +53,15 @@
 
 
         </div>
-        <div class="footer"></div>
+        <div class="footer" @click="toggle">
+
+
+        </div>
+
+
+            <component v-if="show" :is="view"></component>
+
+
 
     </div>
 </template>
@@ -83,9 +91,35 @@
 
 <script>
     import Scroller from  '../components/Scroller.vue'
+//    import hello from '../components/hello.vue'
     export default {
+        data(){
+          return {
+              show: false,
+              view: undefined
+          }
+        },
         components: {
             Scroller
+        },
+        methods: {
+          toggle(){
+              let me = this;
+              if(!this.show){
+                  require.ensure([], function () {
+                      me.view = require('../components/hello.vue');
+                      me.show = !me.show;
+                  }, 'jczq/chunk/hello')
+
+
+
+
+
+              }else {
+                  this.show = !this.show;
+              }
+
+          }
         },
         mounted(){
 
