@@ -22,7 +22,7 @@ module.exports = Object.assign({}, base, {
         new ExtractTextPlugin({
             // filename: '[name]/style.[chunkhash:8].css',
             // filename: '[name]/style.css',
-            filename: '[name]/style.css?[chunkhash:8]',
+            filename: '[name]/style.css?[hash:8]',
             disable: false, allChunks: true }),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest'],

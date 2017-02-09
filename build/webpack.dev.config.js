@@ -39,8 +39,9 @@ module.exports = Object.assign({}, base, {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: [
+                    'style-loader',
                     'css-loader',
-                    'style-loader'
+
                 ]
 
             },
