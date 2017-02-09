@@ -8,8 +8,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     context: path.resolve(__dirname, "../src"),
     entry: {
-        jczq: [path.join(__dirname, '../src/jczq/main.js')],
-        jclq: [path.join(__dirname, '../src/jclq/main.js')],
+        jrtt: [path.join(__dirname, '../src/jrtt/main.js')],
         vendor: ['vue', 'vue-router', 'vuex', 'v-tap', 'vuex-router-sync', 'es6-promise']
     },
 
@@ -32,20 +31,14 @@ module.exports = {
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
         }),
         new HtmlWebpackPlugin({
-            filename: 'jczq/index.html',
-            title: '竞彩足球',
-            template: path.join(__dirname, '../src/jczq/index.ejs'),
+            filename: 'jrtt/index.html',
+            title: '今日头条',
+            template: path.join(__dirname, '../src/jrtt/index.ejs'),
             chunks: ['manifest', 'vendor', 'jczq']
         }),
-        new HtmlWebpackPlugin({
-            filename: 'jclq/index.html',
-            title: '竞彩篮球',
-            template: path.join(__dirname, '../src/jclq/index.ejs'),
-            chunks: ['manifest', 'vendor', 'jclq']
-        }),
 
-        new CopyWebpackPlugin([
+        /*new CopyWebpackPlugin([
             {from: 'login', to: 'login'},
-        ])
+        ])*/
     ]
 };
