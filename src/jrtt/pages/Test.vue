@@ -44,6 +44,32 @@
     import  {Scroller} from 'scroller'
     export default {
         mounted(){
+
+//            let sock = new WebSocket('ws://em.500.com/score/sock/979/jtwockmv/websocket');
+            let sock = new WebSocket('ws://192.168.41.76:6070/jrttcrazybet');
+
+            sock.onopen = function() {
+                console.log('open');
+            };
+            sock.onmessage = function(e) {
+                console.log('message', e.data);
+            };
+            sock.onclose = function() {
+                console.log('close');
+            };
+
+            setTimeout(function () {
+                sock.send('x');
+            }, 2000)
+
+
+
+
+
+
+
+
+
             let container = document.querySelector('.container');
             let content = document.querySelector('.content');
             var scrollerObj = new Scroller(function(left, top, zoom) {

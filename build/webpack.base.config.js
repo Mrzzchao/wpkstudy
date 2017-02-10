@@ -34,7 +34,7 @@ module.exports = {
             filename: 'jrtt/index.html',
             title: '今日头条',
             template: path.join(__dirname, '../src/jrtt/index.ejs'),
-            chunks: ['manifest', 'vendor', 'jczq']
+            chunks: ['manifest', 'vendor', 'jrtt']
         }),
 
         /*new CopyWebpackPlugin([
