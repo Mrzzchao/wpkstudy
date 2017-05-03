@@ -8,7 +8,8 @@
     "prod": "cross-env NODE_ENV=production node server.js",
     "dev": "node server.js",
     "clean": "rimraf dist/*",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "lint": "eslint --ext .js,.vue ."
   },
   "lint-staged": {
     "*.js": [
@@ -37,7 +38,12 @@
     "cross-env": "^4.0.0",
     "css-loader": "^0.28.1",
     "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
     "eslint-plugin-html": "^2.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
     "express": "^4.15.2",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
