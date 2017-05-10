@@ -17,7 +17,8 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: 'babel-loader'
+                loader: 'babel-loader',
+                query: {'presets': ['vue-app'], 'babelrc': false, 'cacheDirectory': true}
             }
 
         ]
@@ -44,7 +45,7 @@ module.exports = {
         })
 
         /* new CopyWebpackPlugin([
-            {from: 'login', to: 'login'},
-        ]) */
+         {from: 'login', to: 'login'},
+         ]) */
     ]
 }

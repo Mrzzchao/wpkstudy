@@ -6,7 +6,7 @@ const webpack = require('webpack')
 const base = require('./webpack.base.config')
 let entry = {vendor: base.entry.vendor}
 Object.keys(base.entry).filter(key => key !== 'vendor').forEach(key => {
-    entry[key] = ['webpack-hot-middleware/client?noInfo=true&reload=true'].concat(base.entry[key])
+    entry[key] = ['webpack-hot-middleware/client?reload=true'].concat(base.entry[key])
 })
 
 module.exports = Object.assign({}, base, {

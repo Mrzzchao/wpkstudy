@@ -3,17 +3,20 @@
  */
 const express = require('express')
 const path = require('path')
-
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const webpack = require('webpack')
 const webpackConfig = require('./../build/webpack.dev.config.js')
 
 const app = express()
+const host = process.env.HOST || '0.0.0.0'
+const port = process.env.PORT || 8080
+app.set('port', port)
+
 if (process.env.NODE_ENV === 'production') {
     const compression = require('compression')
     app.use(compression())
-    app.use(express.static(path.join(__dirname, 'dist'), {
+    app.use(express.static(path.join(__dirname, '../dist'), {
         maxAge: '1d'
     }))
 } else {
@@ -28,6 +31,6 @@ if (process.env.NODE_ENV === 'production') {
     }))
 }
 
-app.listen(8080, function () {
-    console.log('Listening on port 8080!')
+app.listen(port, host, () => {
+    console.log('Server listening on ' + host + ':' + port)
 })
