@@ -27,7 +27,7 @@ module.exports = Object.assign({}, base, {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest'],
-            filename: '[name]/[name].[chunkhash:8].js'
+            filename: '[name].[chunkhash:8].js'
             // filename: '[name]/[name].js?[chunkhash:8]',
 
         })
