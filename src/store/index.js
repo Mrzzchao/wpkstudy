@@ -3,17 +3,19 @@
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as actions from './actions'
-
-import mutations from './mutations'
-
 Vue.use(Vuex)
 
 const state = {
     name: 'lichun'
 }
+const mutations = {
 
-export default new Vuex.Store({
+}
+const actions = {
+
+}
+
+export default () => new Vuex.Store({
     state,
     actions,
     mutations

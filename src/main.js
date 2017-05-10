@@ -3,19 +3,19 @@
  */
 import Vue from 'vue'
 import App from './pages/App.vue'
-import store from './store'
+import storeFactory from './store'
 import router from './router'
 import { sync } from 'vuex-router-sync'
-import vueTap from 'v-tap';
-Vue.use(vueTap);
-sync(store, router);
+import vueTap from 'v-tap'
+Vue.use(vueTap)
+const store = storeFactory()
+sync(store, router)
 
 const app = new Vue(Object.assign({
     router,
-    store,
-}, App));
+    store
+}, App))
 
-app.$mount('#app');
-
+app.$mount('#app')
 
 export { app, router, store }

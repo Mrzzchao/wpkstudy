@@ -9,21 +9,23 @@
     "dev": "node server.js",
     "clean": "rimraf dist/*",
     "precommit": "lint-staged",
-    "lint": "eslint --ext .js,.vue ."
+    "lint": "eslint --ext .js,.vue src",
+    "lint-fix": "eslint --ext .js,.vue src --fix"
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
+      "eslint --ext .js,.vue src --fix",
       "git add"
     ]
   },
   "author": "sampsonli",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.1",
     "es6-promise": "^4.1.0",
     "scroller": "0.0.3",
     "v-tap": "^3.0.1",
-    "vue": "^2.3.2",
+    "vue": "^2.3.3",
     "vue-router": "^2.5.3",
     "vuex": "^2.3.1",
     "vuex-router-sync": "^4.1.1"
@@ -38,6 +40,7 @@
     "cross-env": "^4.0.0",
     "css-loader": "^0.28.1",
     "eslint": "^3.19.0",
+    "babel-eslint": "^7.2.3",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-html": "^2.0.1",
     "eslint-plugin-import": "^2.2.0",
@@ -53,8 +56,8 @@
     "rimraf": "^2.6.1",
     "style-loader": "^0.17.0",
     "vue-loader": "^12.0.3",
-    "vue-template-compiler": "^2.3.2",
-    "webpack": "^2.4.1",
+    "vue-template-compiler": "^2.3.3",
+    "webpack": "^2.5.1",
     "webpack-assets-manifest": "^0.6.2",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-hot-middleware": "^2.18.0"

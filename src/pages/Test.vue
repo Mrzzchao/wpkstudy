@@ -41,74 +41,61 @@
 </template>
 
 <script>
-    import  {Scroller} from 'scroller'
+    import {Scroller} from 'scroller'
     export default {
-        mounted(){
-
+        mounted () {
 //            let sock = new WebSocket('ws://em.500.com/score/sock/979/jtwockmv/websocket');
-            let sock = new WebSocket('ws://192.168.41.76:6070/jrttcrazybet');
+            let sock = new WebSocket('ws://192.168.41.76:6070/jrttcrazybet')
 
-            sock.onopen = function() {
-                console.log('open');
-            };
-            sock.onmessage = function(e) {
-                console.log('message', e.data);
-            };
-            sock.onclose = function() {
-                console.log('close');
-            };
+            sock.onopen = function () {
+                console.log('open')
+            }
+            sock.onmessage = function (e) {
+                console.log('message', e.data)
+            }
+            sock.onclose = function () {
+                console.log('close')
+            }
 
             setTimeout(function () {
-                sock.send('x');
+                sock.send('x')
             }, 2000)
 
-
-
-
-
-
-
-
-
-            let container = document.querySelector('.container');
-            let content = document.querySelector('.content');
-            var scrollerObj = new Scroller(function(left, top, zoom) {
+            let container = document.querySelector('.container')
+            let content = document.querySelector('.content')
+            var scrollerObj = new Scroller(function (left, top, zoom) {
 //                content.style.transform = 'translate(' + (-left) + 'px,' + (-top) + 'px) scale(' + zoom + ')';
-                content.style.transform ='translate3d(' + (-left) + 'px,' + (-top) + 'px,0) scale(' + zoom + ')';
+                content.style.transform = 'translate3d(' + (-left) + 'px,' + (-top) + 'px,0) scale(' + zoom + ')'
             }, {
                 scrollingX: false,
                 scrollingY: true
-            });
+            })
 
-            scrollerObj.setDimensions(container.offsetWidth, container.offsetHeight, content.offsetWidth, content.offsetHeight);
+            scrollerObj.setDimensions(container.offsetWidth, container.offsetHeight, content.offsetWidth, content.offsetHeight)
 
-
-            container.addEventListener("touchstart", function(e) {
+            container.addEventListener('touchstart', function (e) {
                 // Don't react if initial down happens on a form element
                 if (e.touches[0] && e.touches[0].target && e.touches[0].target.tagName.match(/input|textarea|select/i)) {
-                    return;
+                    return
                 }
 
-                scrollerObj.doTouchStart(e.touches, e.timeStamp);
-                e.preventDefault();
-            }, false);
+                scrollerObj.doTouchStart(e.touches, e.timeStamp)
+                e.preventDefault()
+            }, false)
 
-            container.addEventListener("touchmove", function(e) {
-                scrollerObj.doTouchMove(e.touches, e.timeStamp, e.scale);
-            }, false);
+            container.addEventListener('touchmove', function (e) {
+                scrollerObj.doTouchMove(e.touches, e.timeStamp, e.scale)
+            }, false)
 
-            container.addEventListener("touchend", function(e) {
-                scrollerObj.doTouchEnd(e.timeStamp);
-            }, false);
+            container.addEventListener('touchend', function (e) {
+                scrollerObj.doTouchEnd(e.timeStamp)
+            }, false)
 
-            container.addEventListener("touchcancel", function(e) {
-                scrollerObj.doTouchEnd(e.timeStamp);
-            }, false);
-
+            container.addEventListener('touchcancel', function (e) {
+                scrollerObj.doTouchEnd(e.timeStamp)
+            }, false)
         }
 
     }
 
 </script>
-
-

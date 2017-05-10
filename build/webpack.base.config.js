@@ -1,15 +1,14 @@
 /**
  * Created by lichun on 2017/1/18.
  */
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 module.exports = {
-    context: path.resolve(__dirname, "../src"),
+    context: path.resolve(__dirname, '../src'),
     entry: {
-        jrtt: [path.join(__dirname, '../src/jrtt/main.js')],
-        vendor: ['vue', 'vue-router', 'vuex', 'v-tap', 'vuex-router-sync', 'es6-promise']
+        app: [path.join(__dirname, '../src/main.js')],
+        vendor: ['vue', 'vue-router', 'vuex', 'v-tap', 'vuex-router-sync', 'es6-promise', 'axios']
     },
 
     module: {
@@ -17,28 +16,32 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                use: 'babel-loader',
-            },
+                use: 'babel-loader'
+            }
 
         ]
     },
     resolve: {
         extensions: ['.js', '.jsx', '.vue'],
-        modules: [path.resolve(__dirname, "../src"), "node_modules"]
+        modules: [path.resolve(__dirname, '../src'), 'node_modules'],
+        alias: {
+            '~common': path.path.resolve(__dirname, '../common'),
+            '~pages': path.path.resolve(__dirname, '../pages'),
+            '~assets': path.path.resolve(__dirname, '../assets')
+        }
     },
     plugins: [
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
         }),
         new HtmlWebpackPlugin({
-            filename: 'jrtt/index.html',
-            title: '今日头条',
-            template: path.join(__dirname, '../src/jrtt/index.ejs'),
-            chunks: ['manifest', 'vendor', 'jrtt']
-        }),
+            filename: 'index.html',
+            template: path.join(__dirname, '../src/index.ejs'),
+            chunks: ['manifest', 'vendor', 'app']
+        })
 
-        /*new CopyWebpackPlugin([
+        /* new CopyWebpackPlugin([
             {from: 'login', to: 'login'},
-        ])*/
+        ]) */
     ]
-};
+}

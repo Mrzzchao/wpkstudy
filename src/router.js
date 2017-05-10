@@ -3,11 +3,9 @@
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Test from './pages/Test.vue'
 
 Vue.use(VueRouter)
-
-
-import Test from './pages/Test.vue'
 
 export default new VueRouter({
     mode: 'hash',
@@ -15,9 +13,9 @@ export default new VueRouter({
         {
             path: '/demo',
             component: Test
-        },{
+        }, {
             path: '*',
             redirect: '/demo'
         }
     ]
-});
+})

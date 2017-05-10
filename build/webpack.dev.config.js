@@ -1,19 +1,19 @@
 /**
  * Created by lichun on 2017/1/18.
  */
-const path = require('path');
-const webpack = require('webpack');
-const base = require('./webpack.base.config');
-let entry = {vendor: base.entry.vendor};
-Object.keys(base.entry).filter(key=>key!=='vendor').forEach(key=>{
-    entry[key]= ['webpack-hot-middleware/client?noInfo=true&reload=true'].concat(base.entry[key])
-});
+const path = require('path')
+const webpack = require('webpack')
+const base = require('./webpack.base.config')
+let entry = {vendor: base.entry.vendor}
+Object.keys(base.entry).filter(key => key !== 'vendor').forEach(key => {
+    entry[key] = ['webpack-hot-middleware/client?noInfo=true&reload=true'].concat(base.entry[key])
+})
 
 module.exports = Object.assign({}, base, {
     devtool: '#cheap-module-eval-source-map',
     entry,
     output: {
-        filename: '[name]/main.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/',
         chunkFilename: '[name].chunk.js'
@@ -22,9 +22,9 @@ module.exports = Object.assign({}, base, {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor', 'manifest'],
-            filename: '[name]/[name].js'
+            filename: '[name].js'
 
-        }),
+        })
 
     ]),
     module: {
@@ -33,29 +33,27 @@ module.exports = Object.assign({}, base, {
             {
                 test: /\.vue$/,
                 // exclude: /node_modules/,
-                use: 'vue-loader',
+                use: 'vue-loader'
             },
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: [
                     'style-loader',
-                    'css-loader',
+                    'css-loader'
 
                 ]
 
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
-                loader: "file-loader",
+                loader: 'file-loader',
                 query: {
-                    name: '[path]/[name].[ext]?[hash:8]',
+                    name: '[path][name].[ext]'
                 }
-
 
             }
         ]
-    },
-
+    }
 
 })
