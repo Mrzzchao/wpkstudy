@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js --progress --hide-modules",
-    "prod": "cross-env NODE_ENV=production node server/index.js",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.config.js --progress --hide-modules && backpack build",
+    "prod": "cross-env NODE_ENV=production node build/main.js",
     "dev": "backpack dev",
     "clean": "rimraf dist/*",
     "precommit": "lint-staged",

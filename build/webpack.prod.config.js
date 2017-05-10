@@ -20,7 +20,7 @@ module.exports = Object.assign({}, base, {
             }
         }),
         new ExtractTextPlugin({
-            filename: '[name]/style.[chunkhash:8].css',
+            filename: 'style.[chunkhash:8].css',
             // filename: '[name]/style.css?[hash:8]',
             disable: false,
             allChunks: true
