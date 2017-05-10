@@ -3,3 +3,4 @@ npm-debug.log
 .idea
 config
 dist
+build/main.js

@@ -5,7 +5,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 module.exports = {
-    context: path.resolve(__dirname, '../src'),
+    // context: path.resolve(__dirname, '../src'),
     entry: {
         app: [path.join(__dirname, '../src/main.js')],
         vendor: ['vue', 'vue-router', 'vuex', 'v-tap', 'vuex-router-sync', 'es6-promise', 'axios']
@@ -23,11 +23,13 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx', '.vue'],
-        modules: [path.resolve(__dirname, '../src'), 'node_modules'],
         alias: {
-            '~common': path.resolve(__dirname, '../common'),
-            '~pages': path.resolve(__dirname, '../pages'),
-            '~assets': path.resolve(__dirname, '../assets')
+            '~common': path.resolve(__dirname, '../src/common'),
+            '~components': path.resolve(__dirname, '../src/components'),
+            '~pages': path.resolve(__dirname, '../src/pages'),
+            '~assets': path.resolve(__dirname, '../src/assets'),
+            'assets': path.resolve(__dirname, '../src/assets'),
+            'vue$': 'vue/dist/vue.js'
         }
     },
     plugins: [

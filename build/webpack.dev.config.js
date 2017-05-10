@@ -41,9 +41,7 @@ module.exports = Object.assign({}, base, {
                 use: [
                     'style-loader',
                     'css-loader'
-
                 ]
-
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,

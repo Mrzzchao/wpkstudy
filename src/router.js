@@ -4,8 +4,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-const Test = import('./pages/Test.vue')
-const Test2 = import('./pages/Test2.vue')
+const Test = import('./pages/Test.vue' /* webpackChunkName: "chunk/test" */)
+const Test2 = import('./pages/Test2.vue'/* webpackChunkName: "chunk/test2" */)
+// import Test from '~pages/Test'
+// import Test2 from '~pages/Test2'
+
+/* const Test = resolve => {
+    require.ensure(['./pages/Test.vue'], () => {
+        resolve(require('./pages/Test.vue'))
+    })
+}
+
+const Test2 = resolve => {
+    require.ensure(['./pages/Test2.vue'], () => {
+        resolve(require('./pages/Test2.vue'))
+    })
+} */
 
 Vue.use(VueRouter)
 
