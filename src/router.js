@@ -3,7 +3,9 @@
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Test from './pages/Test.vue'
+
+const Test = import('./pages/Test.vue')
+const Test2 = import('./pages/Test2.vue')
 
 Vue.use(VueRouter)
 
@@ -11,11 +13,16 @@ export default new VueRouter({
     mode: 'hash',
     routes: [
         {
-            path: '/demo',
+            path: '/test',
             component: Test
-        }, {
+        },
+        {
+            path: '/test2',
+            component: Test2
+        },
+        {
             path: '*',
-            redirect: '/demo'
+            redirect: '/test'
         }
     ]
 })

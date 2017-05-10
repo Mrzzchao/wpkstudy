@@ -25,9 +25,9 @@ module.exports = {
         extensions: ['.js', '.jsx', '.vue'],
         modules: [path.resolve(__dirname, '../src'), 'node_modules'],
         alias: {
-            '~common': path.path.resolve(__dirname, '../common'),
-            '~pages': path.path.resolve(__dirname, '../pages'),
-            '~assets': path.path.resolve(__dirname, '../assets')
+            '~common': path.resolve(__dirname, '../common'),
+            '~pages': path.resolve(__dirname, '../pages'),
+            '~assets': path.resolve(__dirname, '../assets')
         }
     },
     plugins: [
