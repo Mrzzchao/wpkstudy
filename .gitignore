@@ -4,3 +4,4 @@ npm-debug.log
 config
 dist
 build/main.js
+tmp
