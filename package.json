@@ -52,6 +52,7 @@
     "husky": "^0.13.3",
     "lint-staged": "^3.4.1",
     "rimraf": "^2.6.1",
+    "shipit-deploy": "^2.4.0",
     "style-loader": "^0.17.0",
     "vue-loader": "^12.0.3",
     "vue-template-compiler": "^2.3.3",
