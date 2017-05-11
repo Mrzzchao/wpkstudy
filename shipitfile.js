@@ -5,7 +5,7 @@ module.exports = function (shipit) {
     require('shipit-deploy')(shipit)
     shipit.initConfig({
         default: {
-            workspace: '/var/tmp',
+            workspace: '/var/tmp_project',
             deployTo: '/root/project/wpkstudy',
             repositoryUrl: 'git@github.com:sampsonli/wpkstudy.git',
             ignores: ['.git', 'node_modules'],
