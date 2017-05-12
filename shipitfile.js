@@ -5,7 +5,7 @@ module.exports = function (shipit) {
     require('shipit-deploy')(shipit)
     shipit.initConfig({
         default: {
-            workspace: '/var/tmp_project',
+            workspace: '/root/tmp/workspace',
             deployTo: '/root/project/wpkstudy',
             repositoryUrl: 'git@github.com:sampsonli/wpkstudy.git',
             ignores: ['.git', 'node_modules'],
@@ -17,4 +17,9 @@ module.exports = function (shipit) {
             servers: 'root@wxminapp.com'
         }
     })
+    /* shipit.task('cp', function () {
+        shipit.remoteCopy(path.resolve('d:/tmp/workspace'), '/root/project/wpkstudy2')
+    })
+    */
 }
+// console.log(path.resolve('d:/tmp/workspace'))

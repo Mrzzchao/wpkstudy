@@ -5,8 +5,8 @@
             <div class="l-full container">
                 <div class="content">
                     <img src="../assets/logo.png"/>
-                    <h1>hello world</h1>
-                    <h1>hello world</h1>
+                    <h1>hello world1</h1>
+                    <h1>hello world2</h1>
                     <h1>hello world</h1>
                     <h1>hello world</h1>
                     <h1>hello world</h1>
